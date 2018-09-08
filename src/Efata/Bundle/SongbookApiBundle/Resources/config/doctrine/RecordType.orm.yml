@@ -1,0 +1,29 @@
+Efata\Bundle\SongbookApiBundle\Entity\RecordType:
+    type: entity
+    table: songbook_song_record_type
+    uniqueConstraints:
+        title_UNIQUE:
+            columns:
+                - title
+    id:
+        idSongRecordType:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_song_record_type
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+    oneToMany:
+        records:
+            targetEntity: SongRecord
+            mappedBy: recordType
+    lifecycleCallbacks: {  }

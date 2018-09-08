@@ -1,0 +1,29 @@
+Efata\Bundle\SongbookApiBundle\Entity\SongTimeSignature:
+    type: entity
+    table: songbook_song_time_signature
+    id:
+        idSongTimeSignature:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_song_time_signature
+            generator:
+                strategy: IDENTITY
+    fields:
+        upperNumber:
+            type: integer
+            nullable: false
+            column: upper_number
+        lowerNumber:
+            type: integer
+            nullable: false
+            column: lower_number
+    manyToMany:
+        songs:
+            targetEntity: Song
+            cascade: {  }
+            fetch: LAZY
+            inversedBy: songTimeSignatures
+    lifecycleCallbacks: {  }

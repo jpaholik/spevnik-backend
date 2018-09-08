@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<song xmlns="http://openlyrics.info/namespace/2009/song"
+      version="0.8"
+      createdIn="OpenLP 2.0"
+      modifiedIn="ChangingSong 0.0.2"
+      modifiedDate=""><!-- date format: ISO 8601 -->
+<properties>
+    <titles>
+        {%- for title in song.titles -%}
+        <title>{{ title.title }}</title>
+        {%- endfor -%}
+    </titles>
+    <authors>
+        {%- for author in song.authors -%}
+        <author>{{ author.title }}</author>
+        {%- endfor -%}
+    </authors>
+    <tempo type="bpm">{{ song.tempo }}</tempo>
+    <key>{{ song.songKey.sign }}</key>
+    <verseOrder>TODO</verseOrder>
+</properties>
+<lyrics>
+    {%- for verse in song.verses -%}
+        {%- for lyrics in verse.lyrics -%}
+        <verse name="{{ verse.type.slug }}">
+            <lines>
+                {{ lyrics.lyrics }}
+            </lines>
+        </verse>
+        {%- endfor -%}
+    {%- endfor -%}
+</lyrics>
+</song>

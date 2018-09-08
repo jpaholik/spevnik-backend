@@ -1,0 +1,44 @@
+Efata\Bundle\SongbookApiBundle\Entity\SongVerse:
+    type: entity
+    table: songbook_song_verse
+    indexes:
+        fk_songbook_song_verse_1_idx:
+            columns:
+                - id_song
+        fk_songbook_song_verse_2_idx:
+            columns:
+                - id_song_verse_type
+    id:
+        idSongVerse:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_song_verse
+            generator:
+                strategy: IDENTITY
+    fields:
+        order:
+            type: integer
+            nullable: true
+    oneToMany:
+        lyrics:
+            targetEntity: SongVerseLyrics
+            mappedBy: verse
+        verseOrders:
+            targetEntity: SongVersionVerseOrder
+            mappedBy: verse
+    manyToOne:
+        song:
+            targetEntity: Song
+            inversedBy: verses
+            joinColumns:
+                id_song:
+                    referencedColumnName: id_song
+        type:
+            targetEntity: SongVerseType
+            inversedBy: verses
+            joinColumns:
+                id_song_verse_type:
+                    referencedColumnName: id_song_verse_type

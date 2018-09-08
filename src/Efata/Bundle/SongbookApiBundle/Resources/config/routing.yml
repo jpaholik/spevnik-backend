@@ -1,0 +1,3 @@
+efata.songbook_api.get_song:
+    path: get-song/{songSlug}
+    defaults: { _controller: EfataSongbookApiBundle:Songbook:getSong }

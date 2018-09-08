@@ -1,0 +1,7 @@
+class_name: AcceptanceTester
+modules:
+    enabled:
+        - WebDriver:
+            url: 'http://spevnik.smefata.localhost/'
+            browser: google-chrome
+        - \Helper\Acceptance

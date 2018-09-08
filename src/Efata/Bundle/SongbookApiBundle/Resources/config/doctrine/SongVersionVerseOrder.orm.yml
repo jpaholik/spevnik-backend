@@ -1,0 +1,42 @@
+Efata\Bundle\SongbookApiBundle\Entity\SongVersionVerseOrder:
+    type: entity
+    table: songbook_song_version_verse_order
+    indexes:
+        fk_songbook_song_version_verse_order_1_idx:
+            columns:
+                - id_song_version
+        fk_songbook_song_version_verse_order_2_idx:
+            columns:
+                - id_verse
+    uniqueConstraints:
+        index4:
+            columns:
+                - id_song_version
+                - order
+    id:
+        idSongVersionVerseOrder:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_song_version_verse_order
+            generator:
+                strategy: IDENTITY
+    fields:
+        order:
+            type: integer
+            nullable: false
+    manyToOne:
+        songVersion:
+            targetEntity: SongVersion
+            inversedBy: verseOrder
+            joinColumns:
+                id_song_version:
+                    referencedColumnName: id_song_version
+        verse:
+            targetEntity: SongVerse
+            inversedBy: verseOrder
+            joinColumns:
+                id_verse:
+                    referencedColumnName: id_song_verse

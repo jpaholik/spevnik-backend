@@ -1,0 +1,47 @@
+Efata\Bundle\SongbookApiBundle\Entity\SongRecord:
+    type: entity
+    table: songbook_song_record
+    indexes:
+        fk_songbook_song_record_1_idx:
+            columns:
+                - id_song
+        fk_songbook_song_record_2_idx:
+            columns:
+                - id_song_record_type
+    id:
+        idSongRecord:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_song_record
+            generator:
+                strategy: IDENTITY
+    fields:
+        url:
+            type: string
+            nullable: false
+            length: 256
+            options:
+                fixed: false
+        note:
+            type: string
+            nullable: true
+            length: 64
+            options:
+                fixed: false
+    manyToOne:
+        song:
+            targetEntity: Song
+            inversedBy: records
+            joinColumns:
+                id_song:
+                    referencedColumnName: id_song
+        recordType:
+            targetEntity: RecordType
+            inversedBy: records
+            joinColumns:
+                id_song_record_type:
+                    referencedColumnName: id_song_record_type
+    lifecycleCallbacks: {  }

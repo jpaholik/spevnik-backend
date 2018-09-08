@@ -1,0 +1,46 @@
+Efata\Bundle\SongbookApiBundle\Entity\Author:
+    type: entity
+    table: songbook_author
+    uniqueConstraints:
+        title_UNIQUE:
+            columns:
+                - title
+        slug_UNIQUE:
+            columns:
+                - slug
+    id:
+        idAuthor:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_author
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+        slug:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+    manyToMany:
+        songs:
+            targetEntity: Song
+            inversedBy: authors
+            joinTable:
+                name: songbook_author_has_song
+                joinColumns:
+                    id_author:
+                        referencedColumnName: id_author
+                inverseJoinColumns:
+                    id_song:
+                        referencedColumnName: id_song
+    lifecycleCallbacks: {  }

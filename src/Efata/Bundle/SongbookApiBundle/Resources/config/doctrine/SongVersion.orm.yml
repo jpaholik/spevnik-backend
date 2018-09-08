@@ -1,0 +1,25 @@
+Efata\Bundle\SongbookApiBundle\Entity\SongVersion:
+    type: entity
+    table: songbook_song_version
+    id:
+        idSongVersion:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_song_version
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+    oneToMany:
+        verseOrders:
+            targetEntity: SongVersionVerseOrder
+            mappedBy: songVersion
+    lifecycleCallbacks: {  }

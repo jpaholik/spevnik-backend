@@ -1,0 +1,27 @@
+Efata\Bundle\SongbookApiBundle\Entity\SongNote:
+    type: entity
+    table: songbook_song_note
+    id:
+        idSongNote:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_song_note
+            generator:
+                strategy: IDENTITY
+    fields:
+        note:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+    manyToMany:
+        songs:
+            targetEntity: Song
+            cascade: {  }
+            fetch: LAZY
+            inversedBy: notes
+    lifecycleCallbacks: {  }

@@ -1,0 +1,93 @@
+Efata\Bundle\SongbookApiBundle\Entity\Song:
+    type: entity
+    table: songbook_song
+    indexes:
+        fk_songbook_song_1_idx:
+            columns:
+                - id_song_key
+    id:
+        idSong:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_song
+            generator:
+                strategy: IDENTITY
+    fields:
+        tempo:
+            type: integer
+            nullable: true
+        version:
+            type: integer
+            nullable: false
+            options:
+                default: '1'
+        createdAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: created_at
+        modifiedAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: modified_at
+        publishedAt:
+            type: datetime
+            nullable: false
+            column: published_at
+    oneToMany:
+        verses:
+            targetEntity: SongVerse
+            mappedBy: song
+        titles:
+            targetEntity: SongTitle
+            mappedBy: song
+        records:
+            targetEntity: SongRecord
+            mappedBy: song
+    manyToOne:
+        songKey:
+            targetEntity: SongKey
+            inversedBy: songs
+            joinColumns:
+                id_song_key:
+                    referencedColumnName: id_song_key
+    manyToMany:
+        authors:
+            targetEntity: Author
+            mappedBy: songs
+        songNotes:
+            targetEntity: SongNote
+            joinTable:
+                name: songbook_song_has_note
+                joinColumns:
+                    id_song:
+                        referencedColumnName: id_song
+                inverseJoinColumns:
+                    id_song_note:
+                        referencedColumnName: id_song_note
+        tags:
+            targetEntity: Tag
+            joinTable:
+                name: songbook_song_has_tag
+                joinColumns:
+                    id_song:
+                        referencedColumnName: id_song
+                inverseJoinColumns:
+                    id_tag:
+                        referencedColumnName: id_tag
+        songTimeSignatures:
+            targetEntity: SongTimeSignature
+            joinTable:
+                name: songbook_song_has_time_signature
+                joinColumns:
+                    id_song:
+                        referencedColumnName: id_song
+                inverseJoinColumns:
+                    id_song_time_signature:
+                        referencedColumnName: id_song_time_signature

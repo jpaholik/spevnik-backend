@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    Efata\Bundle\SongbookApiBundle\:
+        resource: '../../src/Efata/Bundle/SongbookApiBundle/*'
+        exclude: '../../src/Efata/Bundle/SongbookApiBundle/{Db}'

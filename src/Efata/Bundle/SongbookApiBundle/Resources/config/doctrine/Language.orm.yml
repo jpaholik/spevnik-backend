@@ -1,0 +1,41 @@
+Efata\Bundle\SongbookApiBundle\Entity\Language:
+    type: entity
+    table: songbook_language
+    uniqueConstraints:
+        index2:
+            columns:
+                - title
+        index3:
+            columns:
+                - slug
+    id:
+        idLanguage:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_language
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        slug:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+    oneToMany:
+        lyrics:
+            targetEntity: SongVerseLyrics
+            mappedBy: language
+        titles:
+            targetEntity: SongTitle
+            mappedBy: language
+    lifecycleCallbacks: {  }

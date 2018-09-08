@@ -1,0 +1,17 @@
+/web/bundles/
+/app/bootstrap.php.cache
+/app/cache/*
+/app/config/parameters-environment.yml
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+/app/phpunit.xml
+/build/
+/vendor/
+/bin/
+/composer.phar
+/tests/unit.suite.yml
+/tests/functional.suite.yml
+/tests/acceptance.suite.yml
+.idea/*
+

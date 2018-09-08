@@ -1,0 +1,34 @@
+Efata\Bundle\SongbookApiBundle\Entity\SongVerseType:
+    type: entity
+    table: songbook_song_verse_type
+    uniqueConstraints:
+        slug_UNIQUE:
+            columns:
+                - slug
+        title_UNIQUE:
+            columns:
+                - title
+    id:
+        idSongVerseType:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_song_verse_type
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 24
+            options:
+                fixed: false
+        slug:
+            type: string
+            nullable: false
+            length: 24
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

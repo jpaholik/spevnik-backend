@@ -1,0 +1,28 @@
+Efata\Bundle\SongbookApiBundle\Entity\SongKey:
+    type: entity
+    table: songbook_song_key
+    uniqueConstraints:
+        index2:
+            columns:
+                - sign
+    id:
+        idSongKey:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_song_key
+            generator:
+                strategy: IDENTITY
+    fields:
+        sign:
+            type: string
+            nullable: false
+            length: 2
+            options:
+                fixed: false
+    oneToMany:
+        songs:
+            targetEntity: Song
+            mappedBy: songKey

@@ -1,0 +1,22 @@
+Efata\Bundle\SongbookApiBundle\Entity\Version:
+    type: entity
+    table: version
+    uniqueConstraints:
+        module:
+            columns:
+                - module
+    id:
+        module:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+            id: true
+        version:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+    lifecycleCallbacks: {  }

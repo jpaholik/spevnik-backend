@@ -1,0 +1,56 @@
+Efata\Bundle\SongbookApiBundle\Entity\SongTitle:
+    type: entity
+    table: songbook_song_title
+    indexes:
+        fk_songbook_title_1_idx:
+            columns:
+                - id_song
+        fk_songbook_title_2_idx:
+            columns:
+                - id_language
+    uniqueConstraints:
+        index3:
+            columns:
+                - id_song
+                - title
+                - id_language
+        slug_UNIQUE:
+            columns:
+                - slug
+    id:
+        idTitle:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_title
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+        slug:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+    manyToOne:
+        song:
+            targetEntity: Song
+            inversedBy: titles
+            joinColumns:
+                id_song:
+                    referencedColumnName: id_song
+        language:
+            targetEntity: Language
+            inversedBy: lyrics
+            joinColumns:
+                id_language:
+                    referencedColumnName: id_language
+    lifecycleCallbacks: {  }

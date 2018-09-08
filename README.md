@@ -1,4 +1,4 @@
-spevnik-smefata
-===============
+Spevnik spolocenstva Efata
+==========================
 
-A Symfony project created on December 17, 2017, 12:34 pm.
+

@@ -6,4 +6,4 @@ services:
 
     Efata\Bundle\SongbookApiBundle\:
         resource: '../../src/Efata/Bundle/SongbookApiBundle/*'
-        exclude: '../../src/Efata/Bundle/SongbookApiBundle/{Db}'
+        exclude: '../../src/Efata/Bundle/SongbookApiBundle/Db/{*File.php, DbUpdateException.php}'

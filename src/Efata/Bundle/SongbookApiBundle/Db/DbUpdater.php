@@ -7,6 +7,12 @@ use Doctrine\DBAL\DBALException;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
+/**
+ * Class DbUpdater
+ *
+ * @package Efata\Bundle\SongbookApiBundle\Db
+ * @author Jan Paholik <jpaholik@gmail.com>
+ */
 class DbUpdater
 {
     /**
@@ -25,26 +31,24 @@ class DbUpdater
     private $lastVersion;
 
     /**
-     * @var string
-     */
-    private $sqlDir;
-
-    /**
      * @var OutputInterface
      */
     private $output;
 
     /**
+     * @var Connection
+     */
+    private $connection;
+
+    /**
      * DbUpdater constructor.
      *
      * @param Connection $connection
-     * @param string     $sqlDir
      */
-    public function __construct(Connection $connection, $sqlDir)
+    public function __construct(Connection $connection)
     {
         $this->connection = $connection;
         $this->lastVersion = 0;
-        $this->sqlDir = $sqlDir;
     }
 
     /**
@@ -124,14 +128,6 @@ class DbUpdater
     }
 
     /**
-     * @return string
-     */
-    public function getSqlDir()
-    {
-        return $this->sqlDir;
-    }
-
-    /**
      * @param OutputInterface $output
      *
      * @return DbUpdater
@@ -153,8 +149,8 @@ class DbUpdater
     {
         $finder = new Finder();
         $finder->files()
-               ->name($file->getFileName())
-               ->in(dirname($this->sqlDir));
+            ->name($file->getFileName())
+            ->in(dirname('../Resources/sql'));
 
         $sql = '';
         foreach ($finder as $file) {

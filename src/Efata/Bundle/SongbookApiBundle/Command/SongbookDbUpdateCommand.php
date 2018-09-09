@@ -2,6 +2,7 @@
 
 namespace Efata\Bundle\SongbookApiBundle\Command;
 
+use Efata\Bundle\SongbookApiBundle\Db\DbUpdater;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -32,9 +33,9 @@ class SongbookDbUpdateCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln(sprintf('[%s] ... started', date('Y-m-d H:i:s')));
+        $output->writeln(sprintf('DB update started at [%s]', date('Y-m-d H:i:s')));
 
-        $dbUpdater = $this->getContainer()->get('efata_songbook_api.db.db_updater');
+        $dbUpdater = $this->getContainer()->get(DbUpdater::class);
         $dbUpdater->setModuleName('efata-songbook');
         $dbUpdater->setOutput($output);
 
@@ -44,6 +45,6 @@ class SongbookDbUpdateCommand extends ContainerAwareCommand
         $dbUpdater->addDataFile(4, '004-add-verse-types.sql');
         $dbUpdater->updateDb();
 
-        $output->writeln(sprintf('[%s] ... finished', date('Y-m-d H:i:s')));
+        $output->writeln(sprintf('DB update finished at [%s]', date('Y-m-d H:i:s')));
     }
 }

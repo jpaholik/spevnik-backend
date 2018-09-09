@@ -4,6 +4,7 @@ namespace Efata\Bundle\SongbookApiBundle\DataFacade;
 
 use Doctrine\ORM\EntityManager;
 use Efata\Bundle\SongbookApiBundle\Entity\Song;
+use Efata\Bundle\SongbookApiBundle\Entity\SongTitle;
 use Efata\Bundle\SongbookApiBundle\Exception\DataFacadeException;
 
 /**
@@ -36,16 +37,27 @@ class SongDataFacade
      */
     public function getSongBySlug($songSlug)
     {
-        $song = $this->entityManager
-            ->getRepository(Song::class)
-            ->findBySlug($songSlug);
+        return $this->getSongTitleBySlug($songSlug)->getSong();
+    }
 
-        if (null === $song) {
+    /**
+     * @param string $songSlug
+     *
+     * @return SongTitle
+     * @throws DataFacadeException
+     */
+    private function getSongTitleBySlug($songSlug)
+    {
+        $songTitle = $this->entityManager
+            ->getRepository(SongTitle::class)
+            ->findOneBy(['slug' => $songSlug]);
+
+        if (null === $songTitle) {
             throw new DataFacadeException(
-                printf('No song with ID %s was found', $songSlug)
+                sprintf('No song title found by %s slug', $songSlug)
             );
         }
 
-        return $song;
+        return $songTitle;
     }
 }
